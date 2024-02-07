@@ -6,7 +6,7 @@ def blog_page(request):
     context = {'posts': posts}
     return render(request, 'blog/blog-home.html', context)
 
-def single_page(request, pid, post_previous=None, post_next=None):
+def single_page(request, pid):
     
     post = get_object_or_404(Post, pk=pid, status = True, published_date__lte=timezone.now())
     post.counted_view += 1
