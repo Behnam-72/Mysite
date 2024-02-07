@@ -12,7 +12,7 @@
 					{{post.title}}
 				</h1>
 				<p class="text-white link-nav"><a href="{% url 'website:index' %}">Home </a> <span
-						class="lnr lnr-arrow-right"></span><a href="{% url 'blog:index' %}">Blog</a> <span
+						class="lnr lnr-arrow-right"></span><a href="{% url 'blog:index' %}">Blog </a> <span
 						class="lnr lnr-arrow-right"></span>{{post.title}}</p>
 			</div>
 		</div>
@@ -60,8 +60,9 @@
 						<p class="excert">
 							{{post.content}}
 						</p>
-						</p>
+
 					</div>
+
 				</div>
 				<div class="navigation-area">
 					<div class="row">
@@ -396,4 +397,5 @@
 	</div>
 </section>
 <!-- End post-content Area -->
+
 {% endblock %}
