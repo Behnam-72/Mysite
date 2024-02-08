@@ -7,14 +7,12 @@ def blog_page(request):
     return render(request, 'blog/blog-home.html', context)
 
 def single_page(request, pid):
-    
-    post = get_object_or_404(Post, pk=pid, status = True, published_date__lte=timezone.now())
+    post = get_object_or_404(Post, pk=pid, status=True, published_date__lte=timezone.now())
+    post_previous = Post.objects.filter(id__lt=pid, status=True, published_date__lte=timezone.now()).order_by('published_date').last()
+    post_next = Post.objects.filter(id__gt=pid, status=True, published_date__lte=timezone.now()).order_by('published_date').first()
     post.counted_view += 1
     post.save()
-    post_previous = get_object_or_404(Post, pk=pid-1)
-    post_next = get_object_or_404(Post, pk=pid+1)
     context = {'post': post, 'post_previous': post_previous, 'post_next':post_next}
-    
     return render(request, 'blog/blog-single.html', context)
 
     
