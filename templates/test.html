@@ -1,3 +1,4 @@
+{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,15 +9,9 @@
 </head>
 
 <body>
-    {{posts}}
+    <h1>Posts</h1>
+    {% totalposts as posts %}
     {% for post in posts %}
-    {% if post.status == 0 %}
-    <h1>This post not published yet</h1>
-    {% else %}
-    <h1>{{post.title}}</h1>
-    <p>{{post.content}}</p>
-    {% endif %}
+        <p>{{post.content|snippet}}</p>
     {% endfor %}
-</body>
-
 </html>
