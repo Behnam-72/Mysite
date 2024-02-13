@@ -1,17 +1,18 @@
-{% load blog_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Form test</title>
 </head>
-
 <body>
-    <h1>Posts</h1>
-    {% totalposts as posts %}
-    {% for post in posts %}
-        <p>{{post.content|snippet}}</p>
-    {% endfor %}
+
+    <form action="{% url 'website:test' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}    
+        <button type="submit">submit</button>
+    </form>
+
+</body>
 </html>
