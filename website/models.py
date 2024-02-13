@@ -13,5 +13,11 @@ class Contact(models.Model):
         
     def __str__(self):
         return self.subject
+    
+class Newsletter(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.email
 
 # Create your models here.

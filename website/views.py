@@ -1,5 +1,5 @@
-from django.shortcuts import render, HttpResponse
-from website.forms import ContactForm
+from django.shortcuts import render, HttpResponseRedirect
+from website.forms import ContactForm, NewsletterForm
 def home_page(request):
     return render(request, 'website/index.html')
 
@@ -17,5 +17,13 @@ def contact_page(request):
     form = ContactForm() 
     return render(request, 'website/contact.html', {'form': form})
 
+def newsletter(request):
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponseRedirect('/')
 
 # Create your views here.
