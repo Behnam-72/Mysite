@@ -76,7 +76,14 @@
     {% block content %}
 
     {% endblock %}
-
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        {% if message.tags %}
+        <script>alert("{{ message }}")</script> {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
     <!-- start footer Area -->
     <footer class="footer-area section-gap">
         <div class="container">
