@@ -24,3 +24,4 @@ def post_category():
 def latest_post():
     posts = Post.objects.filter(status=1, published_date__lte=timezone.now()).order_by('-published_date')[:6]
     return {'posts': posts}
+

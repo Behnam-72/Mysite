@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from taggit.managers import TaggableManager
+
     
 class Category(models.Model):
     name = models.CharField(max_length=250)
@@ -14,7 +16,7 @@ class Post(models.Model):
     title = models.CharField(max_length=250)
     content = models.TextField()
     category = models.ManyToManyField(Category)
-    # tag
+    tags = TaggableManager()
     counted_view = models.IntegerField(default = 0)
     status = models.BooleanField(default = False)
     published_date = models.DateTimeField(null=True)

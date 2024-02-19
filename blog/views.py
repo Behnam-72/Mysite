@@ -1,12 +1,14 @@
 from django.shortcuts import render,get_object_or_404
 from blog.models import Post
 from django.utils import timezone
-def blog_page(request, cat_name=None, author_name=None):
+def blog_page(request, cat_name=None, author_name=None, tag_name = None):
     posts = Post.objects.filter(status=True, published_date__lte=timezone.now())
     if cat_name:
         posts = posts.filter(category__name=cat_name, status=True, published_date__lte=timezone.now())
     if author_name:
         posts = posts.filter(author__username=author_name, status=True, published_date__lte=timezone.now())
+    if tag_name:
+        posts = posts.filter(tags__name__in=tag_name, status=True, published_date__lte=timezone.now())
     context = {'posts': posts}
     return render(request, 'blog/blog-home.html', context)
 
