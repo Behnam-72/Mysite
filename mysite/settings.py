@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'multi_captcha_admin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,6 +48,7 @@ INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
     'blog.apps.BlogConfig'
 ]
+
 
 # sitemap
 SITE_ID = 2
@@ -80,6 +82,11 @@ SUMMERNOTE_CONFIG = {
             ['view', ['fullscreen', 'codeview', 'help']],
         ]
     }
+}
+
+# captcha-admin
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'simple-captcha',
 }
 
 # Robots
