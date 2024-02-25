@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'robots',
     'captcha',
     'website.apps.WebsiteConfig',
-    'blog.apps.BlogConfig'
+    'blog.apps.BlogConfig',
+    'accounts',
 ]
 
 
