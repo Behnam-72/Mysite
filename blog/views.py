@@ -3,7 +3,9 @@ from blog.models import Post, Comment
 from django.utils import timezone
 from blog.form import CommentForm
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def blog_page(request, cat_name=None, author_name=None, tag_name = None):
     posts = Post.objects.filter(status=True, published_date__lte=timezone.now())
     if cat_name:
