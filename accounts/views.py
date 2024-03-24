@@ -9,15 +9,16 @@ def login_view(request):
             form = AuthenticationForm(request=request, data=request.POST)
             if form.is_valid():
                 username = form.cleaned_data.get('username')
+                email = form.cleaned_data.get('email')
                 password = form.cleaned_data.get('password')
-                user = authenticate(request, username=username, password=password)
+                user = authenticate(request, username=username, email=email, password=password)
                 if user is not None:
                     login(request, user)
                     return redirect('/')
         
         form = AuthenticationForm()
         context = {'form':form}
-        return render(request, 'accounts/login.html', context)
+        return render(request, 'login.html', context)
     else:
         return redirect('/')
 
