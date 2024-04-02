@@ -9,16 +9,22 @@ def login_view(request):
             form = AuthenticationForm(request=request, data=request.POST)
             if form.is_valid():
                 username = form.cleaned_data.get('username')
-                email = form.cleaned_data.get('email')
+                email = form.cleaned_data.get('username')
                 password = form.cleaned_data.get('password')
-                user = authenticate(request, username=username, email=email, password=password)
-                if user is not None:
-                    login(request, user)
-                    return redirect('/')
+                try:
+                    user = authenticate(request, username=username, password=password)
+                    if user is not None:
+                        login(request, user)
+                        return redirect('/')
+                except:
+                    user = authenticate(request, email=email, password=password)
+                    if user is not None:
+                        login(request, user)
+                        return redirect('/')
         
         form = AuthenticationForm()
         context = {'form':form}
-        return render(request, 'login.html', context)
+        return render(request, 'accounts/login.html', context)
     else:
         return redirect('/')
 
@@ -36,7 +42,7 @@ def signup_view(request):
                 return redirect('/')
         form = UserCreationForm()
         context = {'form': form}
-        return render(request, 'accounts/signup.html', context)
+        return render(request, 'accounts/register.html', context)
     else:
         return redirect('/')
 
