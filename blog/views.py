@@ -6,12 +6,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-def blog_page(request, cat_name=None, author_name=None, tag_name = None):
+def blog_page(request, cat_name=None, author_username=None, tag_name = None):
     posts = Post.objects.filter(status=True, published_date__lte=timezone.now())
     if cat_name:
         posts = posts.filter(category__name=cat_name, status=True, published_date__lte=timezone.now())
-    if author_name:
-        posts = posts.filter(author__username=author_name, status=True, published_date__lte=timezone.now())
+    if author_username:
+        posts = posts.filter(author__username=author_username, status=True, published_date__lte=timezone.now())
     if tag_name:
         posts = posts.filter(tags__name=tag_name)
     context = {'posts': posts}
@@ -38,8 +38,6 @@ def single_page(request, pid):
     else:
         return HttpResponseRedirect(reverse('accounts:login'))
 
-def test(request):
-    return render(request, 'test.html')
 
 
 
